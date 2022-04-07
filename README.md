@@ -10,6 +10,8 @@ A Google Apps Script for Google Sheets which organizes all the grades from Googl
 5. Reload your Google Sheet.
 6. Once reloaded, there should be a new Add-on available under the *Extensions* menu.
 
+**You can create a copy template of the Gradebook by clicking on the website link to the right.**
+
 ## Usage
 
 1. To use the Gradebook Add-on, simply create a Google Form quiz, link your Google Form enabled with *Gradebook* and start receiving responses.
