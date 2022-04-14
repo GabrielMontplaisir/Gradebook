@@ -1,0 +1,104 @@
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/b93e1e40a9.js" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- Custom client-side JavaScript code. -->
+<script>
+
+  function init() {
+    GradebookExists();
+    getID();
+    getGrade();
+  }
+
+  function success(text) {
+    var toastAlert = document.getElementById("toast");
+    var alert = new bootstrap.Toast(toastAlert);
+    document.getElementById("result").innerHTML = text;
+    toastAlert.classList.remove("bg-danger");
+    toastAlert.classList.add("bg-success");
+    alert.show();
+  }
+
+  function failure(text) {
+    var toastAlert = document.getElementById("toast");
+    var alert = new bootstrap.Toast(toastAlert);
+    document.getElementById("result").innerHTML = text;
+    toastAlert.classList.remove("bg-success");
+    toastAlert.classList.add("bg-danger");
+    alert.show();
+  }
+
+  function GradebookExists() {
+    google.script.run.withSuccessHandler(function (value) {
+      if (value == true) {
+        document.getElementById("GBBtn").classList.add("hide");
+      }
+    }).GradebookExists();
+  }
+
+  function hideMenu() {
+    document.getElementById("menu").classList.toggle("show");
+  }
+
+  function createGradebook() {
+    google.script.run.withSuccessHandler(function (value) {
+      document.getElementById("GBBtn").classList.add("hide");
+      success(value);
+    }).withFailureHandler(failure)
+    .createGradebook();
+  }
+
+  function tabScores() {
+    document.getElementById("tab").classList.add("spinner");
+    google.script.run.withSuccessHandler(function (value) {
+      document.getElementById("tab").classList.remove("spinner");
+      if (value == "Imported Tab Successfully.") {
+        success(value);
+      } else {
+        failure(value);
+      }
+    }).withFailureHandler(function (value) {
+      document.getElementById("tab").classList.remove("spinner");
+      failure();
+    }).tabScores();
+  }
+
+  function docScores() {
+    document.getElementById("doc").classList.add("spinner");
+    google.script.run.withSuccessHandler(function (value) {
+      document.getElementById("doc").classList.remove("spinner");
+      var text = "Imported all grades sucessfully.";
+      success(text);
+    }).withFailureHandler(function (value) {
+      document.getElementById("doc").classList.remove("spinner");
+      failure();
+    }).docScores();
+  }
+
+  function getID() {
+    google.script.run.withSuccessHandler(function (value) {
+      document.getElementById("idCol").innerHTML = value;
+    }).getID();
+  }
+
+  function getGrade() {
+    google.script.run.withSuccessHandler(function (value) {
+      document.getElementById("gradeCol").innerHTML = value;
+    }).getGrade();
+  }
+
+  function updateID() {
+    google.script.run.withSuccessHandler(function (value) {
+      document.getElementById("idCol").innerHTML = value;
+    }).updateID();
+  }
+
+  function updateGrade() {
+    google.script.run.withSuccessHandler(function (value) {
+      document.getElementById("gradeCol").innerHTML = value;
+    }).updateGrade();
+  }
+</script>
