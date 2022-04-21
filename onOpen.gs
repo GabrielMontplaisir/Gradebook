@@ -20,7 +20,20 @@ function doGet(e) {
     .showSidebar(html);
 }
 
+function showPicker() {
+    const html = HtmlService.createHtmlOutputFromFile('Picker.html')
+      .setWidth(1051)
+      .setHeight(650)
+      .setTitle('Pick a Form to Import to Gradebook');
+    SpreadsheetApp.getUi().showModalDialog(html, 'Pick a Form to Import to Gradebook');
+}
+
 function include(filename) {
   return HtmlService.createHtmlOutputFromFile(filename)
       .getContent();
+}
+
+function getOAuthToken() {
+  DriveApp.getRootFolder();
+  return ScriptApp.getOAuthToken();
 }

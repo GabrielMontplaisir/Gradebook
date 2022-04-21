@@ -46,18 +46,35 @@
         <button type="button" onclick="createGradebook()" class="btn btn-success">Create Gradebook</button>
       </div>
 
-      <h2>Import tab to Gradebook </h2>
-      <button type="button" onclick="tabScores()" class="btn btn-primary">Import Tab</button>
-      <div class="spinner-border spinner-border-sm" id="tab" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+      <h2>Import Grades to Gradebook </h2>
+      <div class="btn-container">
+        <button type="button" onclick="tabScores()" class="btn btn-primary">Import Tab
+          <div class="spinner-border spinner-border-sm" id="tab" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
 
-      <h2>Import whole document to Gradebook </h2>
-      <button type="button" onclick="docScores()" class="btn btn-warning">Import Doc</button>
-      <div class="spinner-border spinner-border-sm" id="doc" role="status">
-        <span class="visually-hidden">Loading...</span>
+        <button type="button" onclick="docScores()" class="btn btn-warning">Import Doc
+          <div class="spinner-border spinner-border-sm" id="doc" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
       </div>
 
+      <h2>Quiz Settings</h2>
+      <div class="btn-container">
+        <button type="button" onclick="createQuiz()" class="btn btn-secondary">Create New Quiz
+          <div class="spinner-border spinner-border-sm" id="newquiz" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
+
+        <button type="button" onclick="google.script.run.showPicker();" class="btn btn-secondary">Import a Form
+          <div class="spinner-border spinner-border-sm" id="importform" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
+      </div>
     </main>
     <footer>
       <a href="https://controlshifted.com" target="_blank">Website</a> | 

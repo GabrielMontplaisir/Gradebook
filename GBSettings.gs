@@ -16,7 +16,7 @@ function createGradebook() {
   scoreSheet.setFrozenColumns(2);
   scoreSheet.setFrozenRows(1);
   PropertiesService.getDocumentProperties().setProperty('IDCol', "Email Address");
-  PropertiesService.getDocumentProperties().setProperty('GradeCol', "Grade");
+  PropertiesService.getDocumentProperties().setProperty('GradeCol', "Score");
   scoreSheet.getRange(1,1).setValue('Homeroom Name');
   scoreSheet.getRange(2,1).setValue('In this column, starting with this row, paste the list of student emails or unique identifiers.');
   scoreSheet.getRange(3,1,3).setValue('student@domain.com');

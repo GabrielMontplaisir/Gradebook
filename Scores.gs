@@ -45,6 +45,7 @@ function docScores() {
       sortScores(col, studentScores, studentList);
     };
   });
+  return "Imported grades successfully."
 }
 
 function tabScores() {
