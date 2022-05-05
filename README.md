@@ -25,8 +25,6 @@ Simply wait for the script to finish. Once completed, you can find the grades in
 
 ## Coming Soon
 
-- UI changes, which will allow you to:
-    - Generate a list of your students in your Gradebook automatically.
-    - Attach a Google Form from the Sheet (Not sure if possible, need to check)
+- Generate a list of your students in your Gradebook automatically.
 - Change the name of your Gradebook without having to access the code.
 - Code optimizations where possible.
