@@ -55,7 +55,6 @@ function tabScores() {
   var sh = ss.getActiveSheet();
   var col = scoreSheet.getLastColumn() + 1;
   var studentList = scoreSheet.getRange(2,1,scoreSheet.getLastRow()-1).getValues();
-  var notGB = true;
 
   if (sh.getName() != gradeBook){
     ss.toast("Gradebook updated with grades from "+sh.getName());

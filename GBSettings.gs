@@ -17,21 +17,17 @@ function createGradebook() {
   scoreSheet.setFrozenRows(1);
   PropertiesService.getDocumentProperties().setProperty('IDCol', "Email Address");
   PropertiesService.getDocumentProperties().setProperty('GradeCol', "Score");
-  scoreSheet.getRange(1,1).setValue('Homeroom Name');
-  scoreSheet.getRange(2,1).setValue('In this column, starting with this row, paste the list of student emails or unique identifiers.');
-  scoreSheet.getRange(3,1,3).setValue('student@domain.com');
-  scoreSheet.getRange(2,2).setValue('In this column, starting with this row, paste the list of student names.');
-  scoreSheet.getRange(3,2,3).setValue('Student Name');
+  scoreSheet.getRange(1,1).setValue('Email Address');
+  scoreSheet.getRange(2,1,3).setValue('student@domain.com');
+  scoreSheet.getRange(1,2).setValue('Student Name');
+  scoreSheet.getRange(2,2,3).setValue('Smith, John');
+  scoreSheet.getRange(1,4).setValue('Portfolio URL');
   return "Created Gradebook tab."
 }
 
-function getID() {
-  return PropertiesService.getDocumentProperties().getProperty("IDCol");
-}
+function getID() {return PropertiesService.getDocumentProperties().getProperty("IDCol")}
 
-function getGrade() {
-  return PropertiesService.getDocumentProperties().getProperty("GradeCol");
-}
+function getGrade() {return PropertiesService.getDocumentProperties().getProperty("GradeCol")}
 
 function updateID() {
   var currentid = SpreadsheetApp.getCurrentCell().getValue();

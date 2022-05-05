@@ -7,3 +7,11 @@ function createQuiz() {
   newQuiz.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
   return newQuiz.getEditUrl()
 }
+
+function importQuiz(formData) {
+  ss = SpreadsheetApp.getActive();
+  formData.forEach(function(form) {
+    var formID = FormApp.openById(form);
+    formID.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId())
+  });
+}

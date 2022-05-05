@@ -104,7 +104,6 @@
   function createQuiz() {
     document.getElementById("newquiz").classList.add("spinner");
     google.script.run.withSuccessHandler(function (value) {
-      document.getElementById("newquiz").classList.remove("spinner");
       var text = "Created New Quiz";
       window.open(value, "_blank");
       success(text);
@@ -113,4 +112,20 @@
       failure();
     }).createQuiz();
   }
+
+  function showPicker() {
+    google.script.run.withSuccessHandler(function(value) {
+      document.getElementById("importquiz").classList.add("spinner");
+    }).showPicker();
+  }
+
+  (async () => {
+    let receiver = new Promise((res, rej) => {
+      window.modalDone = res;
+    });
+    var text = await receiver;
+    document.getElementById("importquiz").classList.remove("spinner");
+    success(text);
+  })();
+  
 </script>

@@ -21,7 +21,6 @@
     }
 
     function createPicker(token) {
-      console.log(pickerApiLoaded,token)
       if (pickerApiLoaded && token) {
         var docsView = new google.picker.DocsView()
           //.setIncludeFolders(true)  // As we're copying folders, we want to include folders in the picker.
@@ -49,28 +48,50 @@
       }
     }
 
+    function findSideBar(limit) {
+      let f = window.top.frames;
+      for (let i = 0; i < limit; ++i) {
+        try {
+          if (
+            f[i] /*/iframedAppPanel*/ &&
+            f[i].length &&
+            f[i][0] && //#sandboxFrame
+            f[i][0][0] && //#userHtmlFrame
+            window !== f[i][0][0] //!== self
+          ) {
+            var sidebar = f[i][0][0];
+            sidebar.modalDone('Imported quiz'); //Modal has finished
+            google.script.host.close();
+          }
+        } catch (e) {
+          console.error(e);
+          continue;
+        }
+      }
+    };
+
     function pickerCallback(data) {
       var action = data[google.picker.Response.ACTION];
 
-      // If a folder is picked...
+      // If a form is picked...
       if (action == google.picker.Action.PICKED) {
         // Retrieve the documents.
         var doc = data[google.picker.Response.DOCUMENTS];
-        var folderData = [];
+        var formData = [];
         for (var i = 0; i < doc.length ; i++) {
-          var id = doc[i][google.picker.Document.ID];           // Get document ID.
-          // var url = doc[i][google.picker.Document.URL];      // Get document URL.
-          var title = doc[i][google.picker.Document.NAME];      // Get document Name.
-          folderData.push([i, id, title, 'In Progress']);       // Add everything to an array -> Spot, ID, Name, Indicate transfer in Progress.
+          var id = doc[i][google.picker.Document.ID];
+          formData.push(id);
         };
-        google.script.run.inProgress(folderData);               // Run inProgress() while using the array as a parameter. Displays all folders to be copied on the Spreadsheet.
-        google.script.run.copyFolders(folderData);              // Start copying folders while using the array as a parameter.
-        google.script.host.close();                             // Close the dialog box.
+
+        google.script.run.importQuiz(formData);
+        findSideBar(10);
+
       } else if (action == google.picker.Action.CANCEL) {
         google.script.host.close();
       }
     }
   </script>
+
 </head>
 <!-- Display the Picker as soon as the dialog loads. -->
 <body onload="getOAuthToken()">
