@@ -83,7 +83,7 @@
           formData.push(id);
         };
 
-        google.script.run.importQuiz(formData);
+        google.script.run.importForm(formData);
         findSideBar(10);
 
       } else if (action == google.picker.Action.CANCEL) {

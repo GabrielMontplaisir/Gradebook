@@ -9,8 +9,6 @@
 <script>
   function init() {
     GradebookExists();
-    getID();
-    getGrade();
   }
 
   function success(text) {
@@ -77,30 +75,6 @@
     }).docScores();
   }
 
-  function getID() {
-    google.script.run.withSuccessHandler(function (value) {
-      document.getElementById("idCol").innerHTML = value;
-    }).getID();
-  }
-
-  function getGrade() {
-    google.script.run.withSuccessHandler(function (value) {
-      document.getElementById("gradeCol").innerHTML = value;
-    }).getGrade();
-  }
-
-  function updateID() {
-    google.script.run.withSuccessHandler(function (value) {
-      document.getElementById("idCol").innerHTML = value;
-    }).updateID();
-  }
-
-  function updateGrade() {
-    google.script.run.withSuccessHandler(function (value) {
-      document.getElementById("gradeCol").innerHTML = value;
-    }).updateGrade();
-  }
-
   function createQuiz() {
     document.getElementById("newquiz").classList.add("spinner");
     google.script.run.withSuccessHandler(function (value) {
@@ -115,7 +89,6 @@
 
   function showPicker() {
     google.script.run.withSuccessHandler(function(value) {
-      document.getElementById("importquiz").classList.add("spinner");
     }).showPicker();
   }
 
