@@ -82,7 +82,7 @@ function sortScores(col, formResponses) {
           var name = AdminDirectory.Users.get(email, {viewType:'domain_public', fields:'name'});
           var fullName = name.name.fullName;
         } catch(err) {
-          var fullName = 'Name not found';
+          var fullName = email.substring(0, email.lastIndexOf("@"));
         }
         scoreSheet.getRange(scoreSheet.getLastRow()+1,1).setValue(email);
         scoreSheet.getRange(scoreSheet.getLastRow(),2).setValue(fullName);
